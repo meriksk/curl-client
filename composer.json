@@ -1,0 +1,37 @@
+{
+    "name": "meriksk/curl-client",
+    "type": "library",
+    "description": "PHP cURL wrapper",
+    "keywords": ["http", "client", "curl", "php"],
+    "homepage": "https://github.com/meriksk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marek Drugac",
+            "email": "marek@luceon.sk",
+            "homepage": "https://github.com/meriksk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+		"php": "^5.5 || ^7.0",
+		"ext-curl": "*"
+    },
+    "require-dev": {
+       "phpunit/phpunit": "*" 
+    },	
+	"autoload": {
+        "psr-4": {
+            "Http\\Client\\Curl\\": "src/"
+        }
+    },
+	"autoload-dev": {
+        "psr-4": {
+			"Http\\Client\\Curl\\Tests\\": "tests/"
+        }
+    },
+	"scripts": {
+        "test": "vendor/bin/phpunit --colors=auto",
+        "test-ci": "vendor/bin/phpunit --coverage-clover build/coverage.xml"
+    }
+}
