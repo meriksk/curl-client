@@ -1,5 +1,8 @@
 <?php
 
+namespace CurlClient\Handlers;
+use CurlClient\Handlers\DefaultResponseHandler;
+
 /**
  * RestXmlHandler class file.
  */
@@ -159,7 +162,7 @@ class XmlResponseHandler extends DefaultResponseHandler
 	 * @param string $xml - XML document - can optionally be a SimpleXMLElement object
 	 * @return array ARRAY
 	 */
-	public function toArray($xml)
+	public function asArray($xml)
 	{
 		if (is_string($xml)) {
 			$xml = new SimpleXMLElement($xml);
@@ -173,7 +176,7 @@ class XmlResponseHandler extends DefaultResponseHandler
 		$arr = [];
 		foreach ($children as $key => $node) {
 
-			$node = $this->toArray($node);
+			$node = $this->asArray($node);
 
 			// support for 'anon' non-associative arrays
 			if ($key === 'anon') {

@@ -24,7 +24,7 @@ class DefaultResponseHandler
 	 * @param mixed $data
 	 * @return array
 	 */
-	function toArray($data)
+	function asArray($data)
 	{
 		return is_array($data) ? $data : [$data];
 	}

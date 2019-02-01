@@ -20,21 +20,21 @@ class JsonResponseHandler extends DefaultResponseHandler
 	{
 		$output = NULL;
 		if (is_string($data)) {
-			$output = json_decode($this->stripBom($data), true);
+			$output = json_decode($this->stripBom((string)$data), true);
 		}
-		
+
 		return $output;
 	}
-	
+
 
 	/**
 	 * Converts response to an Array
 	 * @param mixed $data
 	 * @return array
 	 */
-	public function toArray($data)
+	public function asArray($data)
 	{
-		return json_decode($this->stripBom($data), true);
+		return json_decode($this->stripBom((string)$data), true);
 	}
 
 	/**

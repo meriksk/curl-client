@@ -1,8 +1,6 @@
 <?php
 
-namespace Curl;
-
-use CurlClient\Response;
+namespace CurlClient;
 
 /**
  * cURL Client
@@ -12,7 +10,7 @@ use CurlClient\Response;
  * <b>Basic usage:</b>
  *
  * $client = new CurlClient\Client();
- * $client->expect(Client::RESPONSE_JSON); // or 'json'
+ * $client->expect(CurlClient\Client::RESPONSE_JSON); // or 'json'
  * $client->curlOptions = [CURLOPT_REFERER => 'https://www.google.com'];
  * $response = $client->get('http://remote-host/api', ['id' => 10]);
  *
@@ -55,22 +53,15 @@ use CurlClient\Response;
  * // raw
  * $body = $response->body;
  *
+ * // array
+ * $body = $response->asArray();
+ * 
  * // parsed
  * $body = $response->parse();
  *
- * // serialized
- * $body = $response->serialize();
+ * // serialize response
+ * $serialized = $response->serialize();
  *
- * <b>Expected body format:</b>
- *
- * $client = new CurlClient\Client();
- * $client->expectedType = Client::RESPONSE_JSON;
- * ...
- * or 
- * ...
- * $client->expect('json');
- * ...
- * $body = $response->body; // returns array
  * <pre>
  * </code>
  *
@@ -155,7 +146,7 @@ class Client
 
 		// init
 		$this->setOptions($options);
-		
+
 		// initialization completed
 		$this->_initialization = true;
 
@@ -210,8 +201,8 @@ class Client
 	public function __unset($name)
 	{
 		$setter = 'set'.$name;
-		if (method_exists($this,$setter)) { 
-			$this->$setter(null); 
+		if (method_exists($this,$setter)) {
+			$this->$setter(null);
 		} elseif (method_exists($this,'get'.$name)) {
 			throw new \Exception('Property "'. get_class($this) .'.'. $name .'" is read only.');
 		}
@@ -375,7 +366,7 @@ class Client
 	 */
 	public function setCurlOptions(array $options)
 	{
-		$this->_request->setCurlOptions($options);	
+		$this->_request->setCurlOptions($options);
 		return $this;
 	}
 
@@ -416,7 +407,7 @@ class Client
 
 		return $this;
 	}
-	
+
 	/**
 	 * Get files
 	 * @return \CURLFile[] list
@@ -436,7 +427,7 @@ class Client
 		$this->_request->setFiles($files);
 		return $this;
 	}
-	
+
 	/**
 	 * Add files
 	 * @param string $file Path to the file which will be uploaded
@@ -484,7 +475,7 @@ class Client
 	{
 		$this->expectedType = $responseType;
 	}
-	
+
 	/**
 	 * HTTP Method Get
 	 * @param string $url

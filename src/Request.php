@@ -1,6 +1,6 @@
 <?php
 
-namespace Curl;
+namespace CurlClient;
 
 use CurlClient\Client;
 

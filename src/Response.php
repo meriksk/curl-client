@@ -1,6 +1,6 @@
 <?php
 
-namespace Curl;
+namespace CurlClient;
 
 use CurlClient\Client;
 
@@ -130,7 +130,7 @@ class Response
 			$this->requestSize = (float)$this->getInfo('request_size');
 			$this->totalTime = (float)$this->getInfo('total_time');
 			$this->redirectCount = (int)$this->getInfo('redirect_count');
-			
+
 			// init response handler
 			$this->initHandler($expectedType);
 
@@ -194,6 +194,15 @@ class Response
 	}
 
 	/**
+	 * Returns data as a string
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return (string)$this->data;
+	}
+
+	/**
 	 * Returns <b>TRUE<b> if success, <b>FALSE</b> otherwise
 	 * @return bool
 	 */
@@ -216,6 +225,17 @@ class Response
 	 * @return mixed
 	 */
 	public function getBody()
+	{
+		return $this->body;
+	}
+
+	/**
+	 * Parses response data
+	 * @param array $options
+	 * @return mixed
+	 * @throws Exception
+	 */
+	public function getData()
 	{
 		return $this->body;
 	}
@@ -325,21 +345,6 @@ class Response
 	}
 
 	/**
-	 * Parses response data
-	 * @param array $options
-	 * @return mixed
-	 * @throws Exception
-	 */
-	public function getData($options = NULL)
-	{
-		if ($this->_handler) {
-			return $this->_handler->parse($this->body, $options);
-		} else {
-			return NULL;
-		}
-	}
-
-	/**
 	 * Serialize data with corresponding handler
 	 * @param mixed $options
 	 * @return mixed serialized data
@@ -349,7 +354,7 @@ class Response
 		if ($this->_handler) {
 			return $this->_handler->serialize($this->body, $options);
 		} else {
-			return $data;
+			return NULL;
 		}
 	}
 
@@ -358,10 +363,10 @@ class Response
 	 * @param mixed $data
 	 * @return array
 	 */
-	public function toArray()
+	public function asArray()
 	{
 		if ($this->_handler) {
-			return $this->_handler->toArray($this->body);
+			return $this->_handler->asArray($this->body);
 		} else {
 			return [];
 		}
