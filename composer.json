@@ -18,16 +18,16 @@
 		"ext-curl": "*"
     },
     "require-dev": {
-       "phpunit/phpunit": "*" 
+       "phpunit/phpunit": "^7.0" 
     },	
 	"autoload": {
         "psr-4": {
-            "Http\\Client\\Curl\\": "src/"
+            "CurlClient\\": "src/"
         }
     },
 	"autoload-dev": {
         "psr-4": {
-			"Http\\Client\\Curl\\Tests\\": "tests/"
+			"CurlClient\\Tests\\": "tests/"
         }
     },
 	"scripts": {

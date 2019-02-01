@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Client\Curl\Handlers;
+namespace CurlClient\Handlers;
 
 /**
  * DefaultResponseHandler class file

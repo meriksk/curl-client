@@ -1,26 +1,26 @@
 <?php
 
-namespace Http\Client\Curl\Tests;
+namespace CurlClient\Tests;
 
-use Http\Client\Curl\Client;
-use Http\Client\Curl\Request;
+use CurlClient\Client;
+use CurlClient\Request;
 
 /**
- * Tests for Http\Client\Curl\Request.
- * @covers \Http\Client\Curl\Request
+ * Tests for CurlClient\Request.
+ * @covers \CurlClient\Request
  */
 class RquestTest extends BaseUnitTestCase
 {
 
 	public function testInstance()
 	{
-		$request = new \Http\Client\Curl\Request();
-		$this->assertInstanceOf('\Http\Client\Curl\Request', $request);
+		$request = new \CurlClient\Request();
+		$this->assertInstanceOf('\CurlClient\Request', $request);
 	}
 
     public function testSetOptions()
     {
-		$request = new \Http\Client\Curl\Request([
+		$request = new \CurlClient\Request([
 			'url' => URL_GET,
 			'method' => Client::METHOD_GET,
 			'expectedType' => Client::RESPONSE_JSON,
@@ -40,7 +40,7 @@ class RquestTest extends BaseUnitTestCase
 		// add params
 		$request->addParam('month', 11);
 
-		$this->assertInstanceOf('\Http\Client\Curl\Request', $request);
+		$this->assertInstanceOf('\CurlClient\Request', $request);
 		$this->assertInternalType('array', $request->params);
 		$this->assertInternalType('array', $request->headers);
 		$this->assertInternalType('array', $request->curlOptions);
@@ -518,7 +518,7 @@ class RquestTest extends BaseUnitTestCase
 		$request->headers = ['Content-Type' => 'application/json', 'X-Foo: Bom'];
 		$request->curlOptions = [CURLOPT_REFERER => 'http://www.example.org', CURLOPT_PASSWORD => 'pwd'];
 
-		$this->assertInstanceOf('\Http\Client\Curl\Request', $request);
+		$this->assertInstanceOf('\CurlClient\Request', $request);
 		$this->assertArrayHasKey('year', $request->params);
 		$this->assertArrayHasKey('day', $request->params);
 		$this->assertArrayHasKey('cache', $request->params);
@@ -541,7 +541,7 @@ class RquestTest extends BaseUnitTestCase
 			CURLOPT_PASSWORD => NULL,
 		]);
 
-		$this->assertInstanceOf('Http\Client\Curl\Response', $response);
+		$this->assertInstanceOf('CurlClient\Response', $response);
 		$this->assertArrayHasKey('year', $request->params);
 		$this->assertArrayHasKey('month', $request->params);
 		$this->assertArrayHasKey('name', $request->params);
@@ -576,7 +576,7 @@ class RquestTest extends BaseUnitTestCase
 		$request = new Request();
 		$response = $request->execute(URL_GET, Client::METHOD_GET, ['name=john']);
 
-		$this->assertInstanceOf('\Http\Client\Curl\Response', $response);
+		$this->assertInstanceOf('\CurlClient\Response', $response);
 		$this->assertEquals(Client::METHOD_GET, $request->method);
 		$this->assertEquals(URL_GET.'?name=john', $request->getUrl());
 	}
@@ -592,7 +592,7 @@ class RquestTest extends BaseUnitTestCase
 			'cache' => 1,
 		]);
 
-		$this->assertInstanceOf('\Http\Client\Curl\Response', $response);
+		$this->assertInstanceOf('\CurlClient\Response', $response);
 		$this->assertArrayHasKey('year', $request->params);
 		$this->assertArrayHasKey('month', $request->params);
 		$this->assertArrayHasKey('name', $request->params);

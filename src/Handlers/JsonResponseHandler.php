@@ -1,7 +1,7 @@
 <?php
 
-namespace Http\Client\Curl\Handlers;
-use Http\Client\Curl\Handlers\DefaultResponseHandler;
+namespace CurlClient\Handlers;
+use CurlClient\Handlers\DefaultResponseHandler;
 
 /**
  * RestJsonHandler class file.

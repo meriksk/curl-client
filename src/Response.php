@@ -1,8 +1,8 @@
 <?php
 
-namespace Http\Client\Curl;
+namespace Curl;
 
-use Http\Client\Curl\Client;
+use CurlClient\Client;
 
 /**
  * Response class file.

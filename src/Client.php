@@ -1,8 +1,8 @@
 <?php
 
-namespace Http\Client\Curl;
+namespace Curl;
 
-use Http\Client\Curl\Response;
+use CurlClient\Response;
 
 /**
  * cURL Client
@@ -11,14 +11,14 @@ use Http\Client\Curl\Response;
  * <pre>
  * <b>Basic usage:</b>
  *
- * $client = new Http\Client\Curl\Client();
+ * $client = new CurlClient\Client();
  * $client->expect(Client::RESPONSE_JSON); // or 'json'
  * $client->curlOptions = [CURLOPT_REFERER => 'https://www.google.com'];
  * $response = $client->get('http://remote-host/api', ['id' => 10]);
  *
  * <b>Headers + cURL options:</b>
  *
- * $client = new Http\Client\Curl\Client();
+ * $client = new CurlClient\Client();
  * $client->expect('json');
  * $response = $client->get('http://remote-host/api', ['id' => 10], [
  *     'X-Foo' => 'Bam',
@@ -39,14 +39,14 @@ use Http\Client\Curl\Response;
  *
  * <b>Upload a file (multipart/form-data)</b>
  *
- * $client = new Http\Client\Curl\Client();
+ * $client = new CurlClient\Client();
  * $response = $client->post('http://remote-host/api', [
  *     '@file' => '/path-to-the-file',
  * ]);
  *
  * or
  *
- * $client = new Http\Client\Curl\Client();
+ * $client = new CurlClient\Client();
  * $client->params = ['@file' => '/path-to-the-file'];
  * $response = $client->post('http://remote-host/api');
  *
@@ -63,7 +63,7 @@ use Http\Client\Curl\Response;
  *
  * <b>Expected body format:</b>
  *
- * $client = new Http\Client\Curl\Client();
+ * $client = new CurlClient\Client();
  * $client->expectedType = Client::RESPONSE_JSON;
  * ...
  * or 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Http\Client\Curl\Tests;
+namespace CurlClient\Tests;
 
-use Http\Client\Curl\Client;
-use Http\Client\Curl\Request;
+use CurlClient\Client;
+use CurlClient\Request;
 
 /**
- * Tests for Http\Client\Curl\Response.
- * @covers \Http\Client\Curl\Response
+ * Tests for CurlClient\Response.
+ * @covers \CurlClient\Response
  */
 class ResponseTest extends BaseUnitTestCase
 {
@@ -17,7 +17,7 @@ class ResponseTest extends BaseUnitTestCase
 		$request = new Request();
 		$response = $request->execute(URL_GET, Client::METHOD_GET);
 
-			$this->assertInstanceOf('\Http\Client\Curl\Response', $response);
+			$this->assertInstanceOf('\CurlClient\Response', $response);
 			$this->assertObjectHasAttribute('body', $response);
 			$this->assertObjectHasAttribute('contentType', $response);
 			$this->assertObjectHasAttribute('httpCode', $response);

@@ -1,18 +1,18 @@
 <?php
 
-namespace Http\Client\Curl\Tests;
+namespace CurlClient\Tests;
 
-use Http\Client\Curl\Client;
-use Http\Client\Curl\Tests\BaseUnitTestCase;
+use CurlClient\Client;
+use CurlClient\Tests\BaseUnitTestCase;
 
 /**
- * Tests for Http\Client\Curl\Client.
+ * Tests for CurlClient\Client.
  * Run:
  *
  * vendor/bin/phpunit --colors=always tests/ClientTest
  * vendor/bin/phpunit --colors=always --filter "/testSetOptions$/" tests/ClientTest
  *
- * @covers \Http\Client\Curl\Client
+ * @covers \CurlClient\Client
  */
 class ClientTest extends BaseUnitTestCase
 {
@@ -20,7 +20,7 @@ class ClientTest extends BaseUnitTestCase
     public function testInstance()
     {
 		$client = new Client();
-		$this->assertInstanceOf('\Http\Client\Curl\Client', $client);
+		$this->assertInstanceOf('\CurlClient\Client', $client);
     }
 
     public function testSetOptions()
@@ -39,7 +39,7 @@ class ClientTest extends BaseUnitTestCase
 			]
 		]);
 
-		$this->assertInstanceOf('\Http\Client\Curl\Client', $client);
+		$this->assertInstanceOf('\CurlClient\Client', $client);
 		$this->assertInternalType('array', $client->params);
 		$this->assertInternalType('array', $client->headers);
 		$this->assertInternalType('array', $client->curlOptions);
@@ -262,7 +262,7 @@ class ClientTest extends BaseUnitTestCase
 		$this->assertArrayHasKey(CURLOPT_HTTPHEADER, $request->curlOptions);
 
 		// response
-		$this->assertInstanceOf('\Http\Client\Curl\Response', $response);
+		$this->assertInstanceOf('\CurlClient\Response', $response);
 		$this->assertTrue($response->isSuccess());
 		$this->assertInternalType('array', $response->body);
 		$this->assertArrayHasKey('args', $response->body);
